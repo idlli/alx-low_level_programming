@@ -4,18 +4,20 @@
 #include "lists.h"
 
 /**
- * list_len - check the code for Holberton School students.
- * @h: name of the list
- * Return: the number of nodes.
+ * list_len - returns the number of nodes in a linked list
+ * @h: pointer to the head of the list
+ *
+ * Return: the number of nodes in the list
  */
 size_t list_len(const list_t *h)
 {
-	int count = 0;
+	size_t node_count = 0;
 
-	while (h)
+	while (h != NULL)
 	{
-		count++;
+		node_count++;
 		h = h->next;
 	}
-	return (count);
+
+	return (node_count);
 }

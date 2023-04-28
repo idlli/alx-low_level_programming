@@ -8,47 +8,56 @@
  *
  * Return: length of string
  */
-unsigned int _strlen(char *str)
+unsigned int _strlen(const char *str)
 {
 	unsigned int i;
 
 	for (i = 0; str[i]; i++)
 		;
+
 	return (i);
 }
 
 /**
- * add_node_end - adds a new node to the end of linked list
- * @head: double pointer to a linked list
+ * add_node_end - adds a new node to the end of a linked list
+ * @head: double pointer to the head of the linked list
  * @str: string to add to the new node
  *
  * Return: pointer to the new node
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new, *tmp;
+	list_t *new_node, *tmp;
 
 	if (str == NULL)
 		return (NULL);
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
+
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
 		return (NULL);
-	new->str = strdup(str);
-	if (new->str == NULL)
+
+	new_node->str = strdup(str);
+	if (new_node->str == NULL)
 	{
-		free(new);
+		free(new_node);
 		return (NULL);
 	}
-	new->len = _strlen(new->str);
-	new->next = NULL;
+
+	new_node->len = _strlen(str);
+	new_node->next = NULL;
+
 	if (*head == NULL)
 	{
-		*head = new;
-		return (new);
+		*head = new_node;
+		return (new_node);
 	}
+
 	tmp = *head;
-	while (tmp->next)
+	while (tmp->next != NULL)
+	{
 		tmp = tmp->next;
-	tmp->next = new;
-	return (new);
+	}
+
+	tmp->next = new_node;
+	return (new_node);
 }

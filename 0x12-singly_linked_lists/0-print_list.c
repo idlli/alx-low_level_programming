@@ -4,15 +4,16 @@
 #include "lists.h"
 
 /**
- * print_list - check the code for Holberton School students.
- * @h: name of the list
- * Return: the number of nodes.
+ * print_list - prints all elements of a linked list
+ * @h: pointer to the head of the list
+ *
+ * Return: the number of nodes in the list
  */
 size_t print_list(const list_t *h)
 {
-	int count = 0;
+	size_t node_count = 0;
 
-	while (h)
+	while (h != NULL)
 	{
 		if (h->str == NULL)
 		{
@@ -20,10 +21,12 @@ size_t print_list(const list_t *h)
 		}
 		else
 		{
-		printf("[%d] %s\n", h->len, h->str);
+			printf("[%u] %s\n", h->len, h->str);
 		}
-		count++;
+
+		node_count++;
 		h = h->next;
 	}
-	return (count);
+
+	return (node_count);
 }
